@@ -1,0 +1,116 @@
+version: '3.8'
+
+services:
+  # Main application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${BUILD_TARGET:-production}
+    container_name: foil-app
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - DATABASE_URL=postgresql://${DB_USER:-foil}:${DB_PASSWORD:-foilpass}@postgres:5432/${DB_NAME:-foildb}
+      - REDIS_URL=redis://redis:6379
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - SESSION_SECRET=${SESSION_SECRET:-your-session-secret-here}
+      - CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID}
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - foil-network
+    volumes:
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+
+  # PostgreSQL database
+  postgres:
+    image: postgres:15-alpine
+    container_name: foil-postgres
+    restart: unless-stopped
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    environment:
+      - POSTGRES_USER=${DB_USER:-foil}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-foilpass}
+      - POSTGRES_DB=${DB_NAME:-foildb}
+      - POSTGRES_INIT_SCRIPTS=/docker-entrypoint-initdb.d
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    networks:
+      - foil-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-foil}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis for sessions and caching
+  redis:
+    image: redis:7-alpine
+    container_name: foil-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-foilredis}
+    volumes:
+      - redis_data:/data
+    networks:
+      - foil-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Nginx reverse proxy
+  nginx:
+    image: nginx:alpine
+    container_name: foil-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/ssl:/etc/nginx/ssl
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - foil-network
+
+  # Development database admin (optional)
+  adminer:
+    image: adminer:latest
+    container_name: foil-adminer
+    restart: unless-stopped
+    ports:
+      - "${ADMINER_PORT:-8080}:8080"
+    environment:
+      - ADMINER_DEFAULT_SERVER=postgres
+    networks:
+      - foil-network
+    profiles:
+      - development
+
+networks:
+  foil-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
