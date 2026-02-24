@@ -28,11 +28,11 @@ interface BaseChatProps {
 }
 
 const EXAMPLE_PROMPTS = [
-  { text: 'Build a todo app in React using Tailwind' },
-  { text: 'Build a simple blog using Astro' },
-  { text: 'Create a cookie consent form using Material UI' },
-  { text: 'Make a space invaders game' },
-  { text: 'How do I center a div?' },
+  { text: 'Create a modern SaaS landing page with pricing tiers' },
+  { text: 'Build a real-time chat application with WebSockets' },
+  { text: 'Generate a REST API with authentication and database' },
+  { text: 'Create an AI-powered image gallery with DALL-E integration' },
+  { text: 'Build a responsive dashboard with charts and analytics' },
 ];
 
 const TEXTAREA_MIN_HEIGHT = 76;
