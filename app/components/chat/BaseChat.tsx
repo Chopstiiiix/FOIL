@@ -27,14 +27,6 @@ interface BaseChatProps {
   enhancePrompt?: () => void;
 }
 
-const EXAMPLE_PROMPTS = [
-  { text: 'Create a modern SaaS landing page with pricing tiers' },
-  { text: 'Build a real-time chat application with WebSockets' },
-  { text: 'Generate a REST API with authentication and database' },
-  { text: 'Create an AI-powered image gallery with DALL-E integration' },
-  { text: 'Build a responsive dashboard with charts and analytics' },
-];
-
 const TEXTAREA_MIN_HEIGHT = 76;
 
 export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
@@ -184,26 +176,6 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                 <div className="bg-foil-elements-background-depth-1 pb-6">{/* Ghost Element */}</div>
               </div>
             </div>
-            {!chatStarted && (
-              <div id="examples" className="relative w-full max-w-xl mx-auto mt-8 flex justify-center">
-                <div className="flex flex-col space-y-2 [mask-image:linear-gradient(to_bottom,black_0%,transparent_180%)] hover:[mask-image:none]">
-                  {EXAMPLE_PROMPTS.map((examplePrompt, index) => {
-                    return (
-                      <button
-                        key={index}
-                        onClick={(event) => {
-                          sendMessage?.(event, examplePrompt.text);
-                        }}
-                        className="group flex items-center w-full gap-2 justify-center bg-transparent text-foil-elements-textTertiary hover:text-foil-elements-textPrimary transition-theme"
-                      >
-                        {examplePrompt.text}
-                        <div className="i-ph:arrow-bend-down-left" />
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
           </div>
           <ClientOnly>{() => <Workbench chatStarted={chatStarted} isStreaming={isStreaming} />}</ClientOnly>
         </div>
