@@ -1,0 +1,660 @@
+<testsuites id="" name="" tests="22" failures="15" skipped="0" errors="0" time="126.647301">
+<testsuite name="chat.spec.ts" timestamp="2026-02-24T17:46:58.822Z" hostname="chromium" tests="5" failures="5" skipped="0" time="213.964" errors="0">
+<testcase name="FOIL Chat Functionality › should start a chat session" classname="chat.spec.ts" time="42.251">
+<failure message="chat.spec.ts:8:3 should start a chat session" type="FAILURE">
+<![CDATA[  [chromium] › chat.spec.ts:8:3 › FOIL Chat Functionality › should start a chat session ────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByPlaceholder('How can FOIL help you today?')
+        - locator resolved to <textarea translate="no" placeholder="How can FOIL help you today?" class="w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent"></textarea>
+        - fill("Create a simple HTML page")
+      - attempting fill action
+        - waiting for element to be visible, enabled and editable
+
+
+       8 |   test('should start a chat session', async ({ page }) => {
+       9 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');
+    > 10 |     await textarea.fill('Create a simple HTML page');
+         |                    ^
+      11 |
+      12 |     // Press Enter to send message
+      13 |     await textarea.press('Enter');
+        at C:\Users\leeak\FOIL\tests\e2e\chat.spec.ts:10:20
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\chat-FOIL-Chat-Functionality-should-start-a-chat-session-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\chat-FOIL-Chat-Functionality-should-start-a-chat-session-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|chat-FOIL-Chat-Functionality-should-start-a-chat-session-chromium\video.webm]]
+
+[[ATTACHMENT|chat-FOIL-Chat-Functionality-should-start-a-chat-session-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Chat Functionality › should show workbench toggle after chat starts" classname="chat.spec.ts" time="42.124">
+<failure message="chat.spec.ts:20:3 should show workbench toggle after chat starts" type="FAILURE">
+<![CDATA[  [chromium] › chat.spec.ts:20:3 › FOIL Chat Functionality › should show workbench toggle after chat starts 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.press: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByPlaceholder('How can FOIL help you today?')
+        - locator resolved to <textarea translate="no" placeholder="How can FOIL help you today?" class="w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent"></textarea>
+
+
+      21 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');
+      22 |     await textarea.fill('Create a React component');
+    > 23 |     await textarea.press('Enter');
+         |                    ^
+      24 |
+      25 |     // Wait for chat to start and check for workbench toggle
+      26 |     await expect(page.locator('[data-chat-visible="true"]')).toBeVisible();
+        at C:\Users\leeak\FOIL\tests\e2e\chat.spec.ts:23:20
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\chat-FOIL-Chat-Functionali-453b2-ch-toggle-after-chat-starts-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\chat-FOIL-Chat-Functionali-453b2-ch-toggle-after-chat-starts-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|chat-FOIL-Chat-Functionali-453b2-ch-toggle-after-chat-starts-chromium\video.webm]]
+
+[[ATTACHMENT|chat-FOIL-Chat-Functionali-453b2-ch-toggle-after-chat-starts-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Chat Functionality › should support multiline input with Shift+Enter" classname="chat.spec.ts" time="42.451">
+<failure message="chat.spec.ts:32:3 should support multiline input with Shift+Enter" type="FAILURE">
+<![CDATA[  [chromium] › chat.spec.ts:32:3 › FOIL Chat Functionality › should support multiline input with Shift+Enter 
+
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      2 |
+      3 | test.describe('FOIL Chat Functionality', () => {
+    > 4 |   test.beforeEach(async ({ page }) => {
+        |        ^
+      5 |     await page.goto('/');
+      6 |   });
+      7 |
+        at C:\Users\leeak\FOIL\tests\e2e\chat.spec.ts:4:8
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\chat-FOIL-Chat-Functionali-da9ad-line-input-with-Shift-Enter-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\chat-FOIL-Chat-Functionali-da9ad-line-input-with-Shift-Enter-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|chat-FOIL-Chat-Functionali-da9ad-line-input-with-Shift-Enter-chromium\video.webm]]
+
+[[ATTACHMENT|chat-FOIL-Chat-Functionali-da9ad-line-input-with-Shift-Enter-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Chat Functionality › should show keyboard shortcut hint" classname="chat.spec.ts" time="42.26">
+<failure message="chat.spec.ts:41:3 should show keyboard shortcut hint" type="FAILURE">
+<![CDATA[  [chromium] › chat.spec.ts:41:3 › FOIL Chat Functionality › should show keyboard shortcut hint ────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('Use Shift + Return for a new line')
+    Expected: visible
+    Received: undefined
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByText('Use Shift + Return for a new line')
+
+
+      44 |
+      45 |     const hint = page.getByText('Use Shift + Return for a new line');
+    > 46 |     await expect(hint).toBeVisible();
+         |                        ^
+      47 |   });
+      48 |
+      49 |   test('should handle empty input gracefully', async ({ page }) => {
+        at C:\Users\leeak\FOIL\tests\e2e\chat.spec.ts:46:24
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\chat-FOIL-Chat-Functionali-2aba1-show-keyboard-shortcut-hint-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\chat-FOIL-Chat-Functionali-2aba1-show-keyboard-shortcut-hint-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|chat-FOIL-Chat-Functionali-2aba1-show-keyboard-shortcut-hint-chromium\video.webm]]
+
+[[ATTACHMENT|chat-FOIL-Chat-Functionali-2aba1-show-keyboard-shortcut-hint-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Chat Functionality › should handle empty input gracefully" classname="chat.spec.ts" time="44.878">
+<failure message="chat.spec.ts:49:3 should handle empty input gracefully" type="FAILURE">
+<![CDATA[  [chromium] › chat.spec.ts:49:3 › FOIL Chat Functionality › should handle empty input gracefully ──
+
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      2 |
+      3 | test.describe('FOIL Chat Functionality', () => {
+    > 4 |   test.beforeEach(async ({ page }) => {
+        |        ^
+      5 |     await page.goto('/');
+      6 |   });
+      7 |
+        at C:\Users\leeak\FOIL\tests\e2e\chat.spec.ts:4:8
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\chat-FOIL-Chat-Functionali-4f98d-ndle-empty-input-gracefully-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\chat-FOIL-Chat-Functionali-4f98d-ndle-empty-input-gracefully-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|chat-FOIL-Chat-Functionali-4f98d-ndle-empty-input-gracefully-chromium\video.webm]]
+
+[[ATTACHMENT|chat-FOIL-Chat-Functionali-4f98d-ndle-empty-input-gracefully-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="header-actions.spec.ts" timestamp="2026-02-24T17:46:58.822Z" hostname="chromium" tests="8" failures="8" skipped="0" time="323.431" errors="0">
+<testcase name="FOIL Header Actions › should show GitHub and Vercel action buttons" classname="header-actions.spec.ts" time="44.486">
+<failure message="header-actions.spec.ts:16:3 should show GitHub and Vercel action buttons" type="FAILURE">
+<![CDATA[  [chromium] › header-actions.spec.ts:16:3 › FOIL Header Actions › should show GitHub and Vercel action buttons 
+
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      2 |
+      3 | test.describe('FOIL Header Actions', () => {
+    > 4 |   test.beforeEach(async ({ page }) => {
+        |        ^
+      5 |     await page.goto('/');
+      6 |
+      7 |     // Start a chat to show header actions
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:4:8
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByPlaceholder('How can FOIL help you today?')
+
+
+       7 |     // Start a chat to show header actions
+       8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');
+    >  9 |     await textarea.fill('Create a test project');
+         |                    ^
+      10 |     await textarea.press('Enter');
+      11 |
+      12 |     // Wait for chat to start
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:9:20
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\header-actions-FOIL-Header-a24de-b-and-Vercel-action-buttons-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|header-actions-FOIL-Header-a24de-b-and-Vercel-action-buttons-chromium\video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Header Actions › should open GitHub modal when clicked" classname="header-actions.spec.ts" time="42.136">
+<failure message="header-actions.spec.ts:24:3 should open GitHub modal when clicked" type="FAILURE">
+<![CDATA[  [chromium] › header-actions.spec.ts:24:3 › FOIL Header Actions › should open GitHub modal when clicked 
+
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      2 |
+      3 | test.describe('FOIL Header Actions', () => {
+    > 4 |   test.beforeEach(async ({ page }) => {
+        |        ^
+      5 |     await page.goto('/');
+      6 |
+      7 |     // Start a chat to show header actions
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:4:8
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByPlaceholder('How can FOIL help you today?')
+        - locator resolved to <textarea translate="no" placeholder="How can FOIL help you today?" class="w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent"></textarea>
+        - fill("Create a test project")
+      - attempting fill action
+        - waiting for element to be visible, enabled and editable
+
+
+       7 |     // Start a chat to show header actions
+       8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');
+    >  9 |     await textarea.fill('Create a test project');
+         |                    ^
+      10 |     await textarea.press('Enter');
+      11 |
+      12 |     // Wait for chat to start
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:9:20
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\header-actions-FOIL-Header-4fe02-n-GitHub-modal-when-clicked-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\header-actions-FOIL-Header-4fe02-n-GitHub-modal-when-clicked-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|header-actions-FOIL-Header-4fe02-n-GitHub-modal-when-clicked-chromium\video.webm]]
+
+[[ATTACHMENT|header-actions-FOIL-Header-4fe02-n-GitHub-modal-when-clicked-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Header Actions › should open Vercel modal when clicked" classname="header-actions.spec.ts" time="42.226">
+<failure message="header-actions.spec.ts:36:3 should open Vercel modal when clicked" type="FAILURE">
+<![CDATA[  [chromium] › header-actions.spec.ts:36:3 › FOIL Header Actions › should open Vercel modal when clicked 
+
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      2 |
+      3 | test.describe('FOIL Header Actions', () => {
+    > 4 |   test.beforeEach(async ({ page }) => {
+        |        ^
+      5 |     await page.goto('/');
+      6 |
+      7 |     // Start a chat to show header actions
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:4:8
+
+    Error: locator.press: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByPlaceholder('How can FOIL help you today?')
+        - locator resolved to <textarea translate="no" placeholder="How can FOIL help you today?" class="w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent">Create a test project</textarea>
+      - elementHandle.press("Enter")
+
+
+       8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');
+       9 |     await textarea.fill('Create a test project');
+    > 10 |     await textarea.press('Enter');
+         |                    ^
+      11 |
+      12 |     // Wait for chat to start
+      13 |     await expect(page.locator('[data-chat-visible="true"]')).toBeVisible();
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:10:20
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\header-actions-FOIL-Header-dcf55-n-Vercel-modal-when-clicked-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\header-actions-FOIL-Header-dcf55-n-Vercel-modal-when-clicked-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|header-actions-FOIL-Header-dcf55-n-Vercel-modal-when-clicked-chromium\video.webm]]
+
+[[ATTACHMENT|header-actions-FOIL-Header-dcf55-n-Vercel-modal-when-clicked-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Header Actions › should close modals when clicking backdrop" classname="header-actions.spec.ts" time="42.389">
+<failure message="header-actions.spec.ts:48:3 should close modals when clicking backdrop" type="FAILURE">
+<![CDATA[  [chromium] › header-actions.spec.ts:48:3 › FOIL Header Actions › should close modals when clicking backdrop 
+
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      2 |
+      3 | test.describe('FOIL Header Actions', () => {
+    > 4 |   test.beforeEach(async ({ page }) => {
+        |        ^
+      5 |     await page.goto('/');
+      6 |
+      7 |     // Start a chat to show header actions
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:4:8
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByPlaceholder('How can FOIL help you today?')
+        - locator resolved to <textarea translate="no" placeholder="How can FOIL help you today?" class="w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent"></textarea>
+
+
+       7 |     // Start a chat to show header actions
+       8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');
+    >  9 |     await textarea.fill('Create a test project');
+         |                    ^
+      10 |     await textarea.press('Enter');
+      11 |
+      12 |     // Wait for chat to start
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:9:20
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\header-actions-FOIL-Header-a16b9-dals-when-clicking-backdrop-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\header-actions-FOIL-Header-a16b9-dals-when-clicking-backdrop-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|header-actions-FOIL-Header-a16b9-dals-when-clicking-backdrop-chromium\video.webm]]
+
+[[ATTACHMENT|header-actions-FOIL-Header-a16b9-dals-when-clicking-backdrop-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Header Actions › should show workbench and chat toggle buttons" classname="header-actions.spec.ts" time="42.162">
+<failure message="header-actions.spec.ts:61:3 should show workbench and chat toggle buttons" type="FAILURE">
+<![CDATA[  [chromium] › header-actions.spec.ts:61:3 › FOIL Header Actions › should show workbench and chat toggle buttons 
+
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      2 |
+      3 | test.describe('FOIL Header Actions', () => {
+    > 4 |   test.beforeEach(async ({ page }) => {
+        |        ^
+      5 |     await page.goto('/');
+      6 |
+      7 |     // Start a chat to show header actions
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:4:8
+
+    Error: locator.press: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByPlaceholder('How can FOIL help you today?')
+
+
+       8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');
+       9 |     await textarea.fill('Create a test project');
+    > 10 |     await textarea.press('Enter');
+         |                    ^
+      11 |
+      12 |     // Wait for chat to start
+      13 |     await expect(page.locator('[data-chat-visible="true"]')).toBeVisible();
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:10:20
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\header-actions-FOIL-Header-29139-nch-and-chat-toggle-buttons-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\header-actions-FOIL-Header-29139-nch-and-chat-toggle-buttons-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|header-actions-FOIL-Header-29139-nch-and-chat-toggle-buttons-chromium\video.webm]]
+
+[[ATTACHMENT|header-actions-FOIL-Header-29139-nch-and-chat-toggle-buttons-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Header Actions › should toggle workbench view" classname="header-actions.spec.ts" time="42.153">
+<failure message="header-actions.spec.ts:69:3 should toggle workbench view" type="FAILURE">
+<![CDATA[  [chromium] › header-actions.spec.ts:69:3 › FOIL Header Actions › should toggle workbench view ────
+
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      2 |
+      3 | test.describe('FOIL Header Actions', () => {
+    > 4 |   test.beforeEach(async ({ page }) => {
+        |        ^
+      5 |     await page.goto('/');
+      6 |
+      7 |     // Start a chat to show header actions
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:4:8
+
+    Error: locator.press: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByPlaceholder('How can FOIL help you today?')
+
+
+       8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');
+       9 |     await textarea.fill('Create a test project');
+    > 10 |     await textarea.press('Enter');
+         |                    ^
+      11 |
+      12 |     // Wait for chat to start
+      13 |     await expect(page.locator('[data-chat-visible="true"]')).toBeVisible();
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:10:20
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\header-actions-FOIL-Header-aa33a-hould-toggle-workbench-view-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\header-actions-FOIL-Header-aa33a-hould-toggle-workbench-view-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|header-actions-FOIL-Header-aa33a-hould-toggle-workbench-view-chromium\video.webm]]
+
+[[ATTACHMENT|header-actions-FOIL-Header-aa33a-hould-toggle-workbench-view-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Header Actions › should validate GitHub form inputs" classname="header-actions.spec.ts" time="34.076">
+<failure message="header-actions.spec.ts:77:3 should validate GitHub form inputs" type="FAILURE">
+<![CDATA[  [chromium] › header-actions.spec.ts:77:3 › FOIL Header Actions › should validate GitHub form inputs 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByTitle('Push to GitHub')
+
+
+      77 |   test('should validate GitHub form inputs', async ({ page }) => {
+      78 |     const githubButton = page.getByTitle('Push to GitHub');
+    > 79 |     await githubButton.click();
+         |                        ^
+      80 |
+      81 |     const deployButton = page.getByRole('button', { name: /Push to GitHub/i });
+      82 |
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:79:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\header-actions-FOIL-Header-55912-validate-GitHub-form-inputs-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\header-actions-FOIL-Header-55912-validate-GitHub-form-inputs-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\header-actions-FOIL-Header-55912-validate-GitHub-form-inputs-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|header-actions-FOIL-Header-55912-validate-GitHub-form-inputs-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|header-actions-FOIL-Header-55912-validate-GitHub-form-inputs-chromium\video.webm]]
+
+[[ATTACHMENT|header-actions-FOIL-Header-55912-validate-GitHub-form-inputs-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Header Actions › should validate Vercel form inputs" classname="header-actions.spec.ts" time="33.803">
+<failure message="header-actions.spec.ts:97:3 should validate Vercel form inputs" type="FAILURE">
+<![CDATA[  [chromium] › header-actions.spec.ts:97:3 › FOIL Header Actions › should validate Vercel form inputs 
+
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      2 |
+      3 | test.describe('FOIL Header Actions', () => {
+    > 4 |   test.beforeEach(async ({ page }) => {
+        |        ^
+      5 |     await page.goto('/');
+      6 |
+      7 |     // Start a chat to show header actions
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:4:8
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByPlaceholder('How can FOIL help you today?')
+        - locator resolved to <textarea translate="no" placeholder="How can FOIL help you today?" class="w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent"></textarea>
+        - fill("Create a test project")
+      - attempting fill action
+        - waiting for element to be visible, enabled and editable
+
+
+       7 |     // Start a chat to show header actions
+       8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');
+    >  9 |     await textarea.fill('Create a test project');
+         |                    ^
+      10 |     await textarea.press('Enter');
+      11 |
+      12 |     // Wait for chat to start
+        at C:\Users\leeak\FOIL\tests\e2e\header-actions.spec.ts:9:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\header-actions-FOIL-Header-96b36-validate-Vercel-form-inputs-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\header-actions-FOIL-Header-96b36-validate-Vercel-form-inputs-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\header-actions-FOIL-Header-96b36-validate-Vercel-form-inputs-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|header-actions-FOIL-Header-96b36-validate-Vercel-form-inputs-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|header-actions-FOIL-Header-96b36-validate-Vercel-form-inputs-chromium\video.webm]]
+
+[[ATTACHMENT|header-actions-FOIL-Header-96b36-validate-Vercel-form-inputs-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="home.spec.ts" timestamp="2026-02-24T17:46:58.822Z" hostname="chromium" tests="9" failures="2" skipped="0" time="241.482" errors="0">
+<testcase name="FOIL Home Page › should have correct page title" classname="home.spec.ts" time="29.241">
+</testcase>
+<testcase name="FOIL Home Page › should display main heading" classname="home.spec.ts" time="21.68">
+</testcase>
+<testcase name="FOIL Home Page › should display tagline" classname="home.spec.ts" time="24.627">
+</testcase>
+<testcase name="FOIL Home Page › should have FOIL logo in header" classname="home.spec.ts" time="21.147">
+</testcase>
+<testcase name="FOIL Home Page › should have chat input textarea" classname="home.spec.ts" time="20.862">
+</testcase>
+<testcase name="FOIL Home Page › should be able to type in chat input" classname="home.spec.ts" time="41.031">
+<failure message="home.spec.ts:35:3 should be able to type in chat input" type="FAILURE">
+<![CDATA[  [chromium] › home.spec.ts:35:3 › FOIL Home Page › should be able to type in chat input ───────────
+
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      2 |
+      3 | test.describe('FOIL Home Page', () => {
+    > 4 |   test.beforeEach(async ({ page }) => {
+        |        ^
+      5 |     await page.goto('/');
+      6 |   });
+      7 |
+        at C:\Users\leeak\FOIL\tests\e2e\home.spec.ts:4:8
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:5176/", waiting until "load"
+
+
+      3 | test.describe('FOIL Home Page', () => {
+      4 |   test.beforeEach(async ({ page }) => {
+    > 5 |     await page.goto('/');
+        |                ^
+      6 |   });
+      7 |
+      8 |   test('should have correct page title', async ({ page }) => {
+        at C:\Users\leeak\FOIL\tests\e2e\home.spec.ts:5:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\home-FOIL-Home-Page-should-be-able-to-type-in-chat-input-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\home-FOIL-Home-Page-should-be-able-to-type-in-chat-input-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\home-FOIL-Home-Page-should-be-able-to-type-in-chat-input-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|home-FOIL-Home-Page-should-be-able-to-type-in-chat-input-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|home-FOIL-Home-Page-should-be-able-to-type-in-chat-input-chromium\video.webm]]
+
+[[ATTACHMENT|home-FOIL-Home-Page-should-be-able-to-type-in-chat-input-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Home Page › should show send button when text is entered" classname="home.spec.ts" time="32.378">
+<failure message="home.spec.ts:41:3 should show send button when text is entered" type="FAILURE">
+<![CDATA[  [chromium] › home.spec.ts:41:3 › FOIL Home Page › should show send button when text is entered ───
+
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      2 |
+      3 | test.describe('FOIL Home Page', () => {
+    > 4 |   test.beforeEach(async ({ page }) => {
+        |        ^
+      5 |     await page.goto('/');
+      6 |   });
+      7 |
+        at C:\Users\leeak\FOIL\tests\e2e\home.spec.ts:4:8
+
+    Error: page.goto: Test timeout of 30000ms exceeded.
+    Call log:
+      - navigating to "http://localhost:5176/", waiting until "load"
+
+
+      3 | test.describe('FOIL Home Page', () => {
+      4 |   test.beforeEach(async ({ page }) => {
+    > 5 |     await page.goto('/');
+        |                ^
+      6 |   });
+      7 |
+      8 |   test('should have correct page title', async ({ page }) => {
+        at C:\Users\leeak\FOIL\tests\e2e\home.spec.ts:5:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\home-FOIL-Home-Page-should-e8ecd-button-when-text-is-entered-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\..\test-results\home-FOIL-Home-Page-should-e8ecd-button-when-text-is-entered-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\home-FOIL-Home-Page-should-e8ecd-button-when-text-is-entered-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|home-FOIL-Home-Page-should-e8ecd-button-when-text-is-entered-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|home-FOIL-Home-Page-should-e8ecd-button-when-text-is-entered-chromium\video.webm]]
+
+[[ATTACHMENT|home-FOIL-Home-Page-should-e8ecd-button-when-text-is-entered-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="FOIL Home Page › should show enhance prompt button" classname="home.spec.ts" time="24.354">
+</testcase>
+<testcase name="FOIL Home Page › should have responsive design on mobile" classname="home.spec.ts" time="26.162">
+</testcase>
+</testsuite>
+</testsuites>

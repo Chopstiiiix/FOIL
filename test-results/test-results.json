@@ -1,0 +1,1528 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\leeak\\FOIL\\playwright.config.ts",
+    "rootDir": "C:/Users/leeak/FOIL/tests/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 11
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/leeak/FOIL/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 11
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/leeak/FOIL/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/leeak/FOIL/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 11
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "C:/Users/leeak/FOIL/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/leeak/FOIL/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 11
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "C:/Users/leeak/FOIL/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/leeak/FOIL/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 11
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "C:/Users/leeak/FOIL/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/leeak/FOIL/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 11
+        },
+        "id": "Mobile Safari",
+        "name": "Mobile Safari",
+        "testDir": "C:/Users/leeak/FOIL/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "test-results/html"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/test-results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/junit.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 11,
+    "webServer": {
+      "command": "pnpm run dev",
+      "url": "http://localhost:5176",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "chat.spec.ts",
+      "file": "chat.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "FOIL Chat Functionality",
+          "file": "chat.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should start a chat session",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 42251,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts",
+                            "column": 20,
+                            "line": 10
+                          },
+                          "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByPlaceholder('How can FOIL help you today?')\u001b[22m\n\u001b[2m    - locator resolved to <textarea translate=\"no\" placeholder=\"How can FOIL help you today?\" class=\"w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent\"></textarea>\u001b[22m\n\u001b[2m    - fill(\"Create a simple HTML page\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n\n\n   8 |   test('should start a chat session', async ({ page }) => {\n   9 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');\n> 10 |     await textarea.fill('Create a simple HTML page');\n     |                    ^\n  11 |\n  12 |     // Press Enter to send message\n  13 |     await textarea.press('Enter');\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts:10:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:47:10.974Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\chat-FOIL-Chat-Functionality-should-start-a-chat-session-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\chat-FOIL-Chat-Functionality-should-start-a-chat-session-chromium\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dac514d5d837ca37b9e-60c8daf37f4f21f6b028",
+              "file": "chat.spec.ts",
+              "line": 8,
+              "column": 3
+            },
+            {
+              "title": "should show workbench toggle after chat starts",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 42124,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts",
+                            "column": 20,
+                            "line": 23
+                          },
+                          "message": "Error: locator.press: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByPlaceholder('How can FOIL help you today?')\u001b[22m\n\u001b[2m    - locator resolved to <textarea translate=\"no\" placeholder=\"How can FOIL help you today?\" class=\"w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent\"></textarea>\u001b[22m\n\n\n  21 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');\n  22 |     await textarea.fill('Create a React component');\n> 23 |     await textarea.press('Enter');\n     |                    ^\n  24 |\n  25 |     // Wait for chat to start and check for workbench toggle\n  26 |     await expect(page.locator('[data-chat-visible=\"true\"]')).toBeVisible();\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts:23:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:47:10.814Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\chat-FOIL-Chat-Functionali-453b2-ch-toggle-after-chat-starts-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\chat-FOIL-Chat-Functionali-453b2-ch-toggle-after-chat-starts-chromium\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dac514d5d837ca37b9e-4e0bcc6093cae93d52bc",
+              "file": "chat.spec.ts",
+              "line": 20,
+              "column": 3
+            },
+            {
+              "title": "should support multiline input with Shift+Enter",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 42451,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts:4:8",
+                        "location": {
+                          "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts",
+                          "column": 8,
+                          "line": 4
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 2 |\u001b[39m\n \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'FOIL Chat Functionality'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 6 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts",
+                            "column": 8,
+                            "line": 4
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n  2 |\n  3 | test.describe('FOIL Chat Functionality', () => {\n> 4 |   test.beforeEach(async ({ page }) => {\n    |        ^\n  5 |     await page.goto('/');\n  6 |   });\n  7 |\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts:4:8"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:47:10.990Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\chat-FOIL-Chat-Functionali-da9ad-line-input-with-Shift-Enter-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\chat-FOIL-Chat-Functionali-da9ad-line-input-with-Shift-Enter-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts",
+                        "column": 8,
+                        "line": 4
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dac514d5d837ca37b9e-7c0da76a0d5e899c0358",
+              "file": "chat.spec.ts",
+              "line": 32,
+              "column": 3
+            },
+            {
+              "title": "should show keyboard shortcut hint",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 42260,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts",
+                            "column": 24,
+                            "line": 46
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByText('Use Shift + Return for a new line')\nExpected: visible\nReceived: undefined\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Use Shift + Return for a new line')\u001b[22m\n\n\n  44 |\n  45 |     const hint = page.getByText('Use Shift + Return for a new line');\n> 46 |     await expect(hint).toBeVisible();\n     |                        ^\n  47 |   });\n  48 |\n  49 |   test('should handle empty input gracefully', async ({ page }) => {\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts:46:24"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:47:10.850Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\chat-FOIL-Chat-Functionali-2aba1-show-keyboard-shortcut-hint-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\chat-FOIL-Chat-Functionali-2aba1-show-keyboard-shortcut-hint-chromium\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dac514d5d837ca37b9e-7de8f572d0e3a1ef2b00",
+              "file": "chat.spec.ts",
+              "line": 41,
+              "column": 3
+            },
+            {
+              "title": "should handle empty input gracefully",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "timedOut",
+                      "duration": 44878,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts:4:8",
+                        "location": {
+                          "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts",
+                          "column": 8,
+                          "line": 4
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 2 |\u001b[39m\n \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'FOIL Chat Functionality'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 6 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts",
+                            "column": 8,
+                            "line": 4
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n  2 |\n  3 | test.describe('FOIL Chat Functionality', () => {\n> 4 |   test.beforeEach(async ({ page }) => {\n    |        ^\n  5 |     await page.goto('/');\n  6 |   });\n  7 |\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts:4:8"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:47:10.932Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\chat-FOIL-Chat-Functionali-4f98d-ndle-empty-input-gracefully-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\chat-FOIL-Chat-Functionali-4f98d-ndle-empty-input-gracefully-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\chat.spec.ts",
+                        "column": 8,
+                        "line": 4
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dac514d5d837ca37b9e-a18350a41d0dabd0df6f",
+              "file": "chat.spec.ts",
+              "line": 49,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "header-actions.spec.ts",
+      "file": "header-actions.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "FOIL Header Actions",
+          "file": "header-actions.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should show GitHub and Vercel action buttons",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "timedOut",
+                      "duration": 44486,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8",
+                        "location": {
+                          "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                          "column": 8,
+                          "line": 4
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 2 |\u001b[39m\n \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'FOIL Header Actions'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 6 |\u001b[39m\n \u001b[90m 7 |\u001b[39m     \u001b[90m// Start a chat to show header actions\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 8,
+                            "line": 4
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n  2 |\n  3 | test.describe('FOIL Header Actions', () => {\n> 4 |   test.beforeEach(async ({ page }) => {\n    |        ^\n  5 |     await page.goto('/');\n  6 |\n  7 |     // Start a chat to show header actions\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 20,
+                            "line": 9
+                          },
+                          "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByPlaceholder('How can FOIL help you today?')\u001b[22m\n\n\n   7 |     // Start a chat to show header actions\n   8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');\n>  9 |     await textarea.fill('Create a test project');\n     |                    ^\n  10 |     await textarea.press('Enter');\n  11 |\n  12 |     // Wait for chat to start\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:9:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:47:11.416Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-a24de-b-and-Vercel-action-buttons-chromium\\video.webm"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                        "column": 8,
+                        "line": 4
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dd1cd6cf3cec9d1e6fb-9b4b570a7af8b83e4ade",
+              "file": "header-actions.spec.ts",
+              "line": 16,
+              "column": 3
+            },
+            {
+              "title": "should open GitHub modal when clicked",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 6,
+                      "status": "timedOut",
+                      "duration": 42136,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8",
+                        "location": {
+                          "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                          "column": 8,
+                          "line": 4
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 2 |\u001b[39m\n \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'FOIL Header Actions'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 6 |\u001b[39m\n \u001b[90m 7 |\u001b[39m     \u001b[90m// Start a chat to show header actions\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 8,
+                            "line": 4
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n  2 |\n  3 | test.describe('FOIL Header Actions', () => {\n> 4 |   test.beforeEach(async ({ page }) => {\n    |        ^\n  5 |     await page.goto('/');\n  6 |\n  7 |     // Start a chat to show header actions\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 20,
+                            "line": 9
+                          },
+                          "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByPlaceholder('How can FOIL help you today?')\u001b[22m\n\u001b[2m    - locator resolved to <textarea translate=\"no\" placeholder=\"How can FOIL help you today?\" class=\"w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent\"></textarea>\u001b[22m\n\u001b[2m    - fill(\"Create a test project\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n\n\n   7 |     // Start a chat to show header actions\n   8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');\n>  9 |     await textarea.fill('Create a test project');\n     |                    ^\n  10 |     await textarea.press('Enter');\n  11 |\n  12 |     // Wait for chat to start\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:9:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:47:10.754Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-4fe02-n-GitHub-modal-when-clicked-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-4fe02-n-GitHub-modal-when-clicked-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                        "column": 8,
+                        "line": 4
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dd1cd6cf3cec9d1e6fb-5d1c8ad3bda2cfa4a6a0",
+              "file": "header-actions.spec.ts",
+              "line": 24,
+              "column": 3
+            },
+            {
+              "title": "should open Vercel modal when clicked",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 7,
+                      "status": "timedOut",
+                      "duration": 42226,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8",
+                        "location": {
+                          "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                          "column": 8,
+                          "line": 4
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 2 |\u001b[39m\n \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'FOIL Header Actions'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 6 |\u001b[39m\n \u001b[90m 7 |\u001b[39m     \u001b[90m// Start a chat to show header actions\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 8,
+                            "line": 4
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n  2 |\n  3 | test.describe('FOIL Header Actions', () => {\n> 4 |   test.beforeEach(async ({ page }) => {\n    |        ^\n  5 |     await page.goto('/');\n  6 |\n  7 |     // Start a chat to show header actions\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 20,
+                            "line": 10
+                          },
+                          "message": "Error: locator.press: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByPlaceholder('How can FOIL help you today?')\u001b[22m\n\u001b[2m    - locator resolved to <textarea translate=\"no\" placeholder=\"How can FOIL help you today?\" class=\"w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent\">Create a test project</textarea>\u001b[22m\n\u001b[2m  - elementHandle.press(\"Enter\")\u001b[22m\n\n\n   8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');\n   9 |     await textarea.fill('Create a test project');\n> 10 |     await textarea.press('Enter');\n     |                    ^\n  11 |\n  12 |     // Wait for chat to start\n  13 |     await expect(page.locator('[data-chat-visible=\"true\"]')).toBeVisible();\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:10:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:47:10.753Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-dcf55-n-Vercel-modal-when-clicked-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-dcf55-n-Vercel-modal-when-clicked-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                        "column": 8,
+                        "line": 4
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dd1cd6cf3cec9d1e6fb-d2b6575a6e4d5ab43047",
+              "file": "header-actions.spec.ts",
+              "line": 36,
+              "column": 3
+            },
+            {
+              "title": "should close modals when clicking backdrop",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 8,
+                      "status": "timedOut",
+                      "duration": 42389,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8",
+                        "location": {
+                          "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                          "column": 8,
+                          "line": 4
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 2 |\u001b[39m\n \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'FOIL Header Actions'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 6 |\u001b[39m\n \u001b[90m 7 |\u001b[39m     \u001b[90m// Start a chat to show header actions\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 8,
+                            "line": 4
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n  2 |\n  3 | test.describe('FOIL Header Actions', () => {\n> 4 |   test.beforeEach(async ({ page }) => {\n    |        ^\n  5 |     await page.goto('/');\n  6 |\n  7 |     // Start a chat to show header actions\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 20,
+                            "line": 9
+                          },
+                          "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByPlaceholder('How can FOIL help you today?')\u001b[22m\n\u001b[2m    - locator resolved to <textarea translate=\"no\" placeholder=\"How can FOIL help you today?\" class=\"w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent\"></textarea>\u001b[22m\n\n\n   7 |     // Start a chat to show header actions\n   8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');\n>  9 |     await textarea.fill('Create a test project');\n     |                    ^\n  10 |     await textarea.press('Enter');\n  11 |\n  12 |     // Wait for chat to start\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:9:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:47:10.837Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-a16b9-dals-when-clicking-backdrop-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-a16b9-dals-when-clicking-backdrop-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                        "column": 8,
+                        "line": 4
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dd1cd6cf3cec9d1e6fb-9b75171bb3cb34400db3",
+              "file": "header-actions.spec.ts",
+              "line": 48,
+              "column": 3
+            },
+            {
+              "title": "should show workbench and chat toggle buttons",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 9,
+                      "status": "timedOut",
+                      "duration": 42162,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8",
+                        "location": {
+                          "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                          "column": 8,
+                          "line": 4
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 2 |\u001b[39m\n \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'FOIL Header Actions'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 6 |\u001b[39m\n \u001b[90m 7 |\u001b[39m     \u001b[90m// Start a chat to show header actions\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 8,
+                            "line": 4
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n  2 |\n  3 | test.describe('FOIL Header Actions', () => {\n> 4 |   test.beforeEach(async ({ page }) => {\n    |        ^\n  5 |     await page.goto('/');\n  6 |\n  7 |     // Start a chat to show header actions\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 20,
+                            "line": 10
+                          },
+                          "message": "Error: locator.press: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByPlaceholder('How can FOIL help you today?')\u001b[22m\n\n\n   8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');\n   9 |     await textarea.fill('Create a test project');\n> 10 |     await textarea.press('Enter');\n     |                    ^\n  11 |\n  12 |     // Wait for chat to start\n  13 |     await expect(page.locator('[data-chat-visible=\"true\"]')).toBeVisible();\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:10:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:47:11.517Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-29139-nch-and-chat-toggle-buttons-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-29139-nch-and-chat-toggle-buttons-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                        "column": 8,
+                        "line": 4
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dd1cd6cf3cec9d1e6fb-e6ef1a7cacbe14cf7a69",
+              "file": "header-actions.spec.ts",
+              "line": 61,
+              "column": 3
+            },
+            {
+              "title": "should toggle workbench view",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 10,
+                      "status": "timedOut",
+                      "duration": 42153,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8",
+                        "location": {
+                          "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                          "column": 8,
+                          "line": 4
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 2 |\u001b[39m\n \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'FOIL Header Actions'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 6 |\u001b[39m\n \u001b[90m 7 |\u001b[39m     \u001b[90m// Start a chat to show header actions\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 8,
+                            "line": 4
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n  2 |\n  3 | test.describe('FOIL Header Actions', () => {\n> 4 |   test.beforeEach(async ({ page }) => {\n    |        ^\n  5 |     await page.goto('/');\n  6 |\n  7 |     // Start a chat to show header actions\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 20,
+                            "line": 10
+                          },
+                          "message": "Error: locator.press: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByPlaceholder('How can FOIL help you today?')\u001b[22m\n\n\n   8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');\n   9 |     await textarea.fill('Create a test project');\n> 10 |     await textarea.press('Enter');\n     |                    ^\n  11 |\n  12 |     // Wait for chat to start\n  13 |     await expect(page.locator('[data-chat-visible=\"true\"]')).toBeVisible();\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:10:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:47:11.547Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-aa33a-hould-toggle-workbench-view-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-aa33a-hould-toggle-workbench-view-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                        "column": 8,
+                        "line": 4
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dd1cd6cf3cec9d1e6fb-5594dcbc943f2f7c38e2",
+              "file": "header-actions.spec.ts",
+              "line": 69,
+              "column": 3
+            },
+            {
+              "title": "should validate GitHub form inputs",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 9,
+                      "status": "timedOut",
+                      "duration": 34076,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 24,
+                            "line": 79
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTitle('Push to GitHub')\u001b[22m\n\n\n  77 |   test('should validate GitHub form inputs', async ({ page }) => {\n  78 |     const githubButton = page.getByTitle('Push to GitHub');\n> 79 |     await githubButton.click();\n     |                        ^\n  80 |\n  81 |     const deployButton = page.getByRole('button', { name: /Push to GitHub/i });\n  82 |\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:79:24"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:48:17.385Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-55912-validate-GitHub-form-inputs-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-55912-validate-GitHub-form-inputs-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-55912-validate-GitHub-form-inputs-chromium\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dd1cd6cf3cec9d1e6fb-8ceaebaf31e26f0ebd49",
+              "file": "header-actions.spec.ts",
+              "line": 77,
+              "column": 3
+            },
+            {
+              "title": "should validate Vercel form inputs",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 7,
+                      "status": "timedOut",
+                      "duration": 33803,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8",
+                        "location": {
+                          "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                          "column": 8,
+                          "line": 4
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 2 |\u001b[39m\n \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'FOIL Header Actions'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 6 |\u001b[39m\n \u001b[90m 7 |\u001b[39m     \u001b[90m// Start a chat to show header actions\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 8,
+                            "line": 4
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n  2 |\n  3 | test.describe('FOIL Header Actions', () => {\n> 4 |   test.beforeEach(async ({ page }) => {\n    |        ^\n  5 |     await page.goto('/');\n  6 |\n  7 |     // Start a chat to show header actions\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:4:8"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                            "column": 20,
+                            "line": 9
+                          },
+                          "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByPlaceholder('How can FOIL help you today?')\u001b[22m\n\u001b[2m    - locator resolved to <textarea translate=\"no\" placeholder=\"How can FOIL help you today?\" class=\"w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent\"></textarea>\u001b[22m\n\u001b[2m    - fill(\"Create a test project\")\u001b[22m\n\u001b[2m  - attempting fill action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and editable\u001b[22m\n\n\n   7 |     // Start a chat to show header actions\n   8 |     const textarea = page.getByPlaceholder('How can FOIL help you today?');\n>  9 |     await textarea.fill('Create a test project');\n     |                    ^\n  10 |     await textarea.press('Enter');\n  11 |\n  12 |     // Wait for chat to start\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts:9:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:48:16.762Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-96b36-validate-Vercel-form-inputs-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-96b36-validate-Vercel-form-inputs-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\header-actions-FOIL-Header-96b36-validate-Vercel-form-inputs-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\header-actions.spec.ts",
+                        "column": 8,
+                        "line": 4
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "6dd1cd6cf3cec9d1e6fb-2122e1fffddb7413e228",
+              "file": "header-actions.spec.ts",
+              "line": 97,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "home.spec.ts",
+      "file": "home.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "FOIL Home Page",
+          "file": "home.spec.ts",
+          "line": 3,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should have correct page title",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 29241,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:48:16.853Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-af230d6f0c3884ce210d",
+              "file": "home.spec.ts",
+              "line": 8,
+              "column": 3
+            },
+            {
+              "title": "should display main heading",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 21680,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:48:16.898Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-6ab2f5b3cb96ccde437d",
+              "file": "home.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should display tagline",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 10,
+                      "status": "passed",
+                      "duration": 24627,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:48:16.837Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-c6aa80d5f75a43f8a2ce",
+              "file": "home.spec.ts",
+              "line": 18,
+              "column": 3
+            },
+            {
+              "title": "should have FOIL logo in header",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 8,
+                      "status": "passed",
+                      "duration": 21147,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:48:17.061Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-56a5291a9f24fbc99cf9",
+              "file": "home.spec.ts",
+              "line": 23,
+              "column": 3
+            },
+            {
+              "title": "should have chat input textarea",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 20862,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:48:16.838Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-eeb0b80d965ff6a66cad",
+              "file": "home.spec.ts",
+              "line": 29,
+              "column": 3
+            },
+            {
+              "title": "should be able to type in chat input",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 2,
+                      "status": "timedOut",
+                      "duration": 41031,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts:4:8",
+                        "location": {
+                          "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts",
+                          "column": 8,
+                          "line": 4
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 2 |\u001b[39m\n \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'FOIL Home Page'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 6 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts",
+                            "column": 8,
+                            "line": 4
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n  2 |\n  3 | test.describe('FOIL Home Page', () => {\n> 4 |   test.beforeEach(async ({ page }) => {\n    |        ^\n  5 |     await page.goto('/');\n  6 |   });\n  7 |\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts:4:8"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts",
+                            "column": 16,
+                            "line": 5
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5176/\", waiting until \"load\"\u001b[22m\n\n\n  3 | test.describe('FOIL Home Page', () => {\n  4 |   test.beforeEach(async ({ page }) => {\n> 5 |     await page.goto('/');\n    |                ^\n  6 |   });\n  7 |\n  8 |   test('should have correct page title', async ({ page }) => {\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts:5:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:48:17.420Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\home-FOIL-Home-Page-should-be-able-to-type-in-chat-input-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\home-FOIL-Home-Page-should-be-able-to-type-in-chat-input-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\home-FOIL-Home-Page-should-be-able-to-type-in-chat-input-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts",
+                        "column": 8,
+                        "line": 4
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-aef4405fef3300fe39b1",
+              "file": "home.spec.ts",
+              "line": 35,
+              "column": 3
+            },
+            {
+              "title": "should show send button when text is entered",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 32378,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts:4:8",
+                        "location": {
+                          "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts",
+                          "column": 8,
+                          "line": 4
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 2 |\u001b[39m\n \u001b[90m 3 |\u001b[39m test\u001b[33m.\u001b[39mdescribe(\u001b[32m'FOIL Home Page'\u001b[39m\u001b[33m,\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 |\u001b[39m   test\u001b[33m.\u001b[39mbeforeEach(\u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m   |\u001b[39m        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 6 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 7 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts",
+                            "column": 8,
+                            "line": 4
+                          },
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded while running \"beforeEach\" hook.\u001b[39m\n\n  2 |\n  3 | test.describe('FOIL Home Page', () => {\n> 4 |   test.beforeEach(async ({ page }) => {\n    |        ^\n  5 |     await page.goto('/');\n  6 |   });\n  7 |\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts:4:8"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts",
+                            "column": 16,
+                            "line": 5
+                          },
+                          "message": "Error: page.goto: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"http://localhost:5176/\", waiting until \"load\"\u001b[22m\n\n\n  3 | test.describe('FOIL Home Page', () => {\n  4 |   test.beforeEach(async ({ page }) => {\n> 5 |     await page.goto('/');\n    |                ^\n  6 |   });\n  7 |\n  8 |   test('should have correct page title', async ({ page }) => {\n    at C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts:5:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:48:17.183Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\home-FOIL-Home-Page-should-e8ecd-button-when-text-is-entered-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\home-FOIL-Home-Page-should-e8ecd-button-when-text-is-entered-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\leeak\\FOIL\\test-results\\home-FOIL-Home-Page-should-e8ecd-button-when-text-is-entered-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\leeak\\FOIL\\tests\\e2e\\home.spec.ts",
+                        "column": 8,
+                        "line": 4
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-6fc9fa6b847f5f134fcf",
+              "file": "home.spec.ts",
+              "line": 41,
+              "column": 3
+            },
+            {
+              "title": "should show enhance prompt button",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 20,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 24354,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:48:16.482Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-f59b98960d76232d2447",
+              "file": "home.spec.ts",
+              "line": 49,
+              "column": 3
+            },
+            {
+              "title": "should have responsive design on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 21,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 26162,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-24T17:48:16.963Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-c20143233df9bb8bcbb1",
+              "file": "home.spec.ts",
+              "line": 57,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-02-24T17:46:55.325Z",
+    "duration": 126647.30099999999,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 15,
+    "flaky": 0
+  }
+}
