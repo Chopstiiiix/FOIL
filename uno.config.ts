@@ -268,10 +268,10 @@ function generateAlphaPalette(hex: string) {
         .toString(16)
         .padStart(2, '0');
 
-      acc[opacity] = `${hex}${alpha}`;
+      acc[String(opacity)] = `${hex}${alpha}`;
 
       return acc;
     },
-    {} as Record<number, string>,
+    {} as Record<string, string>,
   );
 }
