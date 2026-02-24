@@ -1,22 +1,22 @@
-# Contributing to Foil
+# Contributing to FOIL
 
-> Welcome to the **Foil** open-source codebase! This repo provides an AI-powered full-stack web development agent that runs entirely in the browser.
+> Welcome to the **FOIL** open-source codebase! This repo provides an AI-powered full-stack web development agent that runs entirely in the browser.
 
 ## Architecture
 
-Foil combines the capabilities of AI with sandboxed development environments to create a collaborative experience where code can be developed by the assistant and the programmer together. Foil combines [WebContainer API](https://webcontainers.io/api) with [Claude Sonnet](https://www.anthropic.com/) using [Remix](https://remix.run/) and the [AI SDK](https://sdk.vercel.ai/).
+FOIL combines the capabilities of AI with sandboxed development environments to create a collaborative experience where code can be developed by the assistant and the programmer together. FOIL combines [WebContainer API](https://webcontainers.io/api) with [Claude Sonnet](https://www.anthropic.com/) using [Remix](https://remix.run/) and the [AI SDK](https://sdk.vercel.ai/).
 
 ### WebContainer API
 
-Foil uses [WebContainers](https://webcontainers.io/) to run generated code in the browser. WebContainers provide a full-stack sandbox environment using [WebContainer API](https://webcontainers.io/api). WebContainers run full-stack applications directly in the browser without the cost and security concerns of cloud hosted AI agents.
+FOIL uses [WebContainers](https://webcontainers.io/) to run generated code in the browser. WebContainers provide a full-stack sandbox environment using [WebContainer API](https://webcontainers.io/api). WebContainers run full-stack applications directly in the browser without the cost and security concerns of cloud hosted AI agents.
 
 ### Remix App
 
-Foil is built with [Remix](https://remix.run/) and deployed using [CloudFlare Pages](https://pages.cloudflare.com/) and [CloudFlare Workers](https://workers.cloudflare.com/).
+FOIL is built with [Remix](https://remix.run/) and deployed using [CloudFlare Pages](https://pages.cloudflare.com/) and [CloudFlare Workers](https://workers.cloudflare.com/).
 
 ### AI SDK Integration
 
-Foil uses the [AI SDK](https://github.com/vercel/ai) to integrate with AI models. You can get an API key from the [Anthropic API Console](https://console.anthropic.com/) to use with Foil.
+FOIL uses the [AI SDK](https://github.com/vercel/ai) to integrate with AI models. You can get an API key from the [Anthropic API Console](https://console.anthropic.com/) to use with FOIL.
 
 ## Prerequisites
 
