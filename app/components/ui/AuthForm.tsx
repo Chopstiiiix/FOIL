@@ -327,7 +327,7 @@ export function AuthForm({ onClose, className }: AuthFormProps) {
                 className="w-full relative group/button mt-5 cursor-pointer"
               >
                 <div className="absolute inset-0 bg-white/10 rounded-full blur-lg opacity-0 group-hover/button:opacity-70 transition-opacity duration-300" />
-                <div className="relative overflow-hidden bg-white text-black font-medium h-10 rounded-full transition-all duration-300 flex items-center justify-center">
+                <div className="relative overflow-hidden bg-transparent text-white font-medium h-10 rounded-full border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center justify-center">
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 -z-10"
                     animate={{ x: ['-100%', '100%'] }}
@@ -343,7 +343,7 @@ export function AuthForm({ onClose, className }: AuthFormProps) {
                         exit={{ opacity: 0 }}
                         className="flex items-center justify-center"
                       >
-                        <div className="w-4 h-4 border-2 border-black/70 border-t-transparent rounded-full animate-spin" />
+                        <div className="w-4 h-4 border-2 border-white/70 border-t-transparent rounded-full animate-spin" />
                       </motion.div>
                     ) : (
                       <motion.span
@@ -383,11 +383,11 @@ export function AuthForm({ onClose, className }: AuthFormProps) {
                 className="w-full relative group/google cursor-pointer"
               >
                 <div className="absolute inset-0 bg-white/5 rounded-full blur opacity-0 group-hover/google:opacity-70 transition-opacity duration-300" />
-                <div className="relative overflow-hidden bg-white/5 text-white font-medium h-10 rounded-full border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center justify-center gap-2">
-                  <div className="w-4 h-4 flex items-center justify-center text-white/80 group-hover/google:text-white transition-colors duration-300">
+                <div className="relative overflow-hidden bg-transparent text-white font-medium h-10 rounded-full border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center justify-center gap-2">
+                  <div className="w-4 h-4 flex items-center justify-center text-white transition-colors duration-300">
                     G
                   </div>
-                  <span className="text-white/80 group-hover/google:text-white transition-colors text-xs">
+                  <span className="text-white transition-colors text-sm">
                     Sign in with Google
                   </span>
                   <motion.div
