@@ -7,6 +7,7 @@ import { cssTransition, toast, ToastContainer } from 'react-toastify';
 import { useMessageParser, usePromptEnhancer, useShortcuts, useSnapScroll } from '~/lib/hooks';
 import { useChatHistory } from '~/lib/persistence';
 import { chatStore } from '~/lib/stores/chat';
+import { isAuthenticated, showLoginDialog } from '~/lib/stores/auth';
 import { workbenchStore } from '~/lib/stores/workbench';
 import { fileModificationsToHTML } from '~/utils/diff';
 import { cubicEasingFn } from '~/utils/easings';
@@ -68,10 +69,13 @@ export const ChatImpl = memo(({ initialMessages, storeMessageHistory }: ChatProp
   useShortcuts();
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const pendingMessageRef = useRef<string | null>(null);
 
   const [chatStarted, setChatStarted] = useState(initialMessages.length > 0);
 
   const { showChat } = useStore(chatStore);
+  const isAuth = useStore(isAuthenticated);
+  const showLogin = useStore(showLoginDialog);
 
   const [animationScope, animate] = useAnimate();
 
@@ -103,6 +107,41 @@ export const ChatImpl = memo(({ initialMessages, storeMessageHistory }: ChatProp
       storeMessageHistory(messages).catch((error) => toast.error(error.message));
     }
   }, [messages, isLoading, parseMessages]);
+
+  // Auto-send the pending message once the user has logged in
+  useEffect(() => {
+    if (!isAuth || !pendingMessageRef.current) {
+      return;
+    }
+
+    const content = pendingMessageRef.current;
+    pendingMessageRef.current = null;
+
+    const fileModifications = workbenchStore.getFileModifcations();
+
+    chatStore.setKey('aborted', false);
+    runAnimation();
+
+    if (fileModifications !== undefined) {
+      const diff = fileModificationsToHTML(fileModifications);
+      append({ role: 'user', content: `${diff}\n\n${content}` });
+      workbenchStore.resetAllFileModifications();
+    } else {
+      append({ role: 'user', content });
+    }
+
+    setInput('');
+    resetEnhancer();
+    textareaRef.current?.blur();
+  }, [isAuth]);
+
+  // If the login dialog is dismissed without completing auth, discard the pending message
+  // (their text remains in the textarea so they can try again after logging in)
+  useEffect(() => {
+    if (!showLogin && !isAuth) {
+      pendingMessageRef.current = null;
+    }
+  }, [showLogin]);
 
   const scrollTextArea = () => {
     const textarea = textareaRef.current;
@@ -161,6 +200,14 @@ export const ChatImpl = memo(({ initialMessages, storeMessageHistory }: ChatProp
      * before they send another message.
      */
     await workbenchStore.saveAllFiles();
+
+    // Auth gate: if the user is not logged in, stash the message and open the login dialog.
+    // The message will be sent automatically once they complete login/signup.
+    if (!isAuthenticated.get()) {
+      pendingMessageRef.current = _input;
+      showLoginDialog.set(true);
+      return;
+    }
 
     const fileModifications = workbenchStore.getFileModifcations();
 
