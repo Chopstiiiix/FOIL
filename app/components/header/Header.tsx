@@ -4,6 +4,8 @@ import { chatStore } from '~/lib/stores/chat';
 import { classNames } from '~/utils/classNames';
 import { HeaderActionButtons } from './HeaderActionButtons.client';
 import { ChatDescription } from '~/lib/persistence/ChatDescription.client';
+import { GetStartedButton } from '~/components/ui/GetStartedButton';
+import { LoginDialog } from '~/components/auth/LoginDialog.client';
 
 export function Header() {
   const chat = useStore(chatStore);
@@ -20,14 +22,14 @@ export function Header() {
     >
       <div className="flex items-center gap-2 z-logo text-foil-elements-textPrimary cursor-pointer">
         <div className="i-ph:sidebar-simple-duotone text-xl" />
-        <a href="/" className="text-2xl font-bold text-accent flex items-center tracking-wider">
-          FOIL
+        <a href="/" className="text-2xl font-semibold text-accent flex items-center">
+          LAB
         </a>
       </div>
       <span className="flex-1 px-4 truncate text-center text-foil-elements-textPrimary">
         <ClientOnly>{() => <ChatDescription />}</ClientOnly>
       </span>
-      {chat.started && (
+      {chat.started ? (
         <ClientOnly>
           {() => (
             <div className="mr-1">
@@ -35,7 +37,10 @@ export function Header() {
             </div>
           )}
         </ClientOnly>
+      ) : (
+        <GetStartedButton />
       )}
+      <ClientOnly>{() => <LoginDialog />}</ClientOnly>
     </header>
   );
 }

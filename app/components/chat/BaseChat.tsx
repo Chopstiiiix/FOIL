@@ -1,10 +1,17 @@
 import type { Message } from 'ai';
-import React, { type RefCallback } from 'react';
+import React, { type RefCallback, useEffect, useState, useCallback } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
+import { toast } from 'react-toastify';
 import { Menu } from '~/components/sidebar/Menu.client';
-import { IconButton } from '~/components/ui/IconButton';
 import { Workbench } from '~/components/workbench/Workbench.client';
+import { Button } from '~/components/ui/Button';
 import { classNames } from '~/utils/classNames';
+import { showGitHubDialog } from '~/lib/stores/github';
+import { showVercelDialog } from '~/lib/stores/vercel';
+import { showImportDialog } from '~/lib/stores/github-import';
+import { GitHubDeployDialog } from '~/components/github/GitHubDeployDialog.client';
+import { VercelDeployDialog } from '~/components/vercel/VercelDeployDialog.client';
+import { GitHubImportDialog } from '~/components/github/GitHubImportDialog.client';
 import { Messages } from './Messages.client';
 import { SendButton } from './SendButton.client';
 
@@ -27,7 +34,82 @@ interface BaseChatProps {
   enhancePrompt?: () => void;
 }
 
-const TEXTAREA_MIN_HEIGHT = 76;
+const EXAMPLE_PROMPTS = [
+  { text: 'Build a todo app in React using Tailwind' },
+  { text: 'Build a simple blog using Astro' },
+  { text: 'Create a cookie consent form using Material UI' },
+  { text: 'Make a space invaders game' },
+  { text: 'How do I center a div?' },
+];
+
+const PLACEHOLDER_SUGGESTIONS = [
+  'Build a personal portfolio website',
+  'Create an interactive quiz app',
+  'Make a weather dashboard with API integration',
+  'Build a real-time chat application',
+  'Design a landing page for a startup',
+  'Create an e-commerce product page',
+  'Build a markdown note-taking app',
+  'Make a kanban board like Trello',
+];
+
+const TYPING_SPEED = 40;
+const ERASING_SPEED = 25;
+const PAUSE_AFTER_TYPING = 2000;
+const PAUSE_AFTER_ERASING = 500;
+
+function useTypingPlaceholder(active: boolean) {
+  const [displayedText, setDisplayedText] = useState('');
+
+  const animate = useCallback(() => {
+    let currentIndex = 0;
+    let charIndex = 0;
+    let isTyping = true;
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    function tick() {
+      const currentText = PLACEHOLDER_SUGGESTIONS[currentIndex];
+
+      if (isTyping) {
+        if (charIndex <= currentText.length) {
+          setDisplayedText(currentText.slice(0, charIndex));
+          charIndex++;
+          timeoutId = setTimeout(tick, TYPING_SPEED);
+        } else {
+          isTyping = false;
+          timeoutId = setTimeout(tick, PAUSE_AFTER_TYPING);
+        }
+      } else {
+        if (charIndex > 0) {
+          charIndex--;
+          setDisplayedText(currentText.slice(0, charIndex));
+          timeoutId = setTimeout(tick, ERASING_SPEED);
+        } else {
+          isTyping = true;
+          currentIndex = (currentIndex + 1) % PLACEHOLDER_SUGGESTIONS.length;
+          timeoutId = setTimeout(tick, PAUSE_AFTER_ERASING);
+        }
+      }
+    }
+
+    tick();
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  useEffect(() => {
+    if (!active) {
+      setDisplayedText('');
+      return;
+    }
+
+    return animate();
+  }, [active, animate]);
+
+  return displayedText;
+}
+
+const TEXTAREA_MIN_HEIGHT = 117;
 
 export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
   (
@@ -50,6 +132,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
     ref,
   ) => {
     const TEXTAREA_MAX_HEIGHT = chatStarted ? 400 : 200;
+    const typingPlaceholder = useTypingPlaceholder(!chatStarted && input.length === 0);
 
     return (
       <div
@@ -65,9 +148,6 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
           <div className={classNames(styles.Chat, 'flex flex-col flex-grow min-w-[var(--chat-min-width)] h-full')}>
             {!chatStarted && (
               <div id="intro" className="mt-[26vh] max-w-chat mx-auto">
-                <h1 className="text-5xl text-center font-bold text-foil-elements-textPrimary mb-2">
-                  Navigate your artistic vision
-                </h1>
                 <p className="mb-4 text-center text-foil-elements-textSecondary">
                   Bring ideas to life in seconds or get help on existing projects
                 </p>
@@ -102,7 +182,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                 >
                   <textarea
                     ref={textareaRef}
-                    className={`w-full pl-4 pt-4 pr-16 focus:outline-none resize-none text-md text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent`}
+                    className={`w-full pl-4 pt-3 pb-3 pr-16 focus:outline-none resize-none text-sm text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent`}
                     onKeyDown={(event) => {
                       if (event.key === 'Enter') {
                         if (event.shiftKey) {
@@ -122,7 +202,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                       minHeight: TEXTAREA_MIN_HEIGHT,
                       maxHeight: TEXTAREA_MAX_HEIGHT,
                     }}
-                    placeholder="How can FOIL help you today?"
+                    placeholder={typingPlaceholder}
                     translate="no"
                   />
                   <ClientOnly>
@@ -141,38 +221,36 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                       />
                     )}
                   </ClientOnly>
-                  <div className="flex justify-between text-sm p-4 pt-2">
-                    <div className="flex gap-1 items-center">
-                      <IconButton
-                        title="Enhance prompt"
-                        disabled={input.length === 0 || enhancingPrompt}
-                        className={classNames({
-                          'opacity-100!': enhancingPrompt,
-                          'text-foil-elements-item-contentAccent! pr-1.5 enabled:hover:bg-foil-elements-item-backgroundAccent!':
-                            promptEnhanced,
-                        })}
-                        onClick={() => enhancePrompt?.()}
-                      >
-                        {enhancingPrompt ? (
-                          <>
-                            <div className="i-svg-spinners:90-ring-with-bg text-foil-elements-loader-progress text-xl"></div>
-                            <div className="ml-1.5">Enhancing prompt...</div>
-                          </>
-                        ) : (
-                          <>
-                            <div className="i-foil:stars text-xl"></div>
-                            {promptEnhanced && <div className="ml-1.5">Prompt enhanced</div>}
-                          </>
-                        )}
-                      </IconButton>
-                    </div>
-                    {input.length > 3 ? (
-                      <div className="text-xs text-foil-elements-textTertiary">
-                        Use <kbd className="kdb">Shift</kbd> + <kbd className="kdb">Return</kbd> for a new line
-                      </div>
-                    ) : null}
-                  </div>
                 </div>
+                {!chatStarted && (
+                  <div className="flex items-center justify-center gap-2 mt-3 flex-wrap">
+                    <Button variant="outline" size="sm" shape="circle" onClick={() => showGitHubDialog.set(true)}>
+                      <div className="i-ph:github-logo" />
+                      GitHub
+                    </Button>
+                    <Button variant="outline" size="sm" shape="circle" onClick={() => showVercelDialog.set(true)}>
+                      <div className="i-ph:rocket-launch" />
+                      Vercel
+                    </Button>
+                    <Button variant="outline" size="sm" shape="circle" onClick={() => showImportDialog.set(true)}>
+                      <div className="i-ph:download-simple" />
+                      Import
+                    </Button>
+                    <Button variant="outline" size="sm" shape="circle" onClick={() => toast.info('Start a conversation first to use the terminal')}>
+                      <div className="i-ph:terminal" />
+                      Terminal
+                    </Button>
+                  </div>
+                )}
+                <ClientOnly>
+                  {() => (
+                    <>
+                      <GitHubDeployDialog />
+                      <VercelDeployDialog />
+                      <GitHubImportDialog />
+                    </>
+                  )}
+                </ClientOnly>
                 <div className="bg-foil-elements-background-depth-1 pb-6">{/* Ghost Element */}</div>
               </div>
             </div>
