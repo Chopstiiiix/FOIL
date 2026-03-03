@@ -1,5 +1,5 @@
 import type { Message } from 'ai';
-import React, { type RefCallback, useEffect, useState, useCallback } from 'react';
+import React, { type RefCallback, useEffect, useState, useCallback, useRef } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
 import { toast } from 'react-toastify';
 import { Menu } from '~/components/sidebar/Menu.client';
@@ -33,6 +33,13 @@ interface BaseChatProps {
   sendMessage?: (event: React.UIEvent, messageInput?: string) => void;
   handleInputChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   enhancePrompt?: () => void;
+}
+
+interface AttachedFile {
+  name: string;
+  content: string;
+  mimeType: string;
+  size: number;
 }
 
 const EXAMPLE_PROMPTS = [
@@ -135,6 +142,57 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
     const TEXTAREA_MAX_HEIGHT = chatStarted ? 400 : 200;
     const typingPlaceholder = useTypingPlaceholder(!chatStarted && input.length === 0);
 
+    const [attachedFiles, setAttachedFiles] = useState<AttachedFile[]>([]);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const files = Array.from(event.target.files || []);
+
+      files.forEach((file) => {
+        const reader = new FileReader();
+
+        if (file.type.startsWith('image/')) {
+          reader.readAsDataURL(file);
+        } else {
+          reader.readAsText(file, 'utf-8');
+        }
+
+        reader.onload = () => {
+          setAttachedFiles((prev) => [
+            ...prev,
+            { name: file.name, content: reader.result as string, mimeType: file.type, size: file.size },
+          ]);
+        };
+      });
+
+      event.target.value = '';
+    };
+
+    const removeAttachedFile = (index: number) => {
+      setAttachedFiles((prev) => prev.filter((_, i) => i !== index));
+    };
+
+    const handleSend = (event: React.UIEvent) => {
+      if (attachedFiles.length > 0 && !isStreaming) {
+        const fileContext = attachedFiles
+          .map((f) => {
+            if (f.mimeType.startsWith('image/')) {
+              return `[Attached image: ${f.name}]`;
+            }
+
+            return `<file name="${f.name}">\n${f.content}\n</file>`;
+          })
+          .join('\n\n');
+
+        const combinedInput = input ? `${fileContext}\n\n${input}` : fileContext;
+
+        sendMessage?.(event, combinedInput);
+        setAttachedFiles([]);
+      } else {
+        sendMessage?.(event);
+      }
+    };
+
     return (
       <div
         ref={ref}
@@ -181,9 +239,28 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                     'shadow-sm border border-foil-elements-borderColor bg-foil-elements-prompt-background backdrop-filter backdrop-blur-[8px] rounded-lg overflow-hidden',
                   )}
                 >
+                  {attachedFiles.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 px-3 pt-2 pb-1 border-b border-foil-elements-borderColor">
+                      {attachedFiles.map((file, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center gap-1 bg-foil-elements-background-depth-3 text-foil-elements-textSecondary rounded-full px-2 py-0.5 text-xs max-w-[200px]"
+                        >
+                          <div className={file.mimeType.startsWith('image/') ? 'i-ph:image' : 'i-ph:file-text'} />
+                          <span className="truncate">{file.name}</span>
+                          <button
+                            className="flex-shrink-0 hover:text-foil-elements-textPrimary ml-0.5"
+                            onClick={() => removeAttachedFile(index)}
+                          >
+                            <div className="i-ph:x text-xs" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   <textarea
                     ref={textareaRef}
-                    className={`w-full pl-4 pt-3 pb-3 pr-16 focus:outline-none resize-none text-sm text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent`}
+                    className={`w-full pl-4 pt-3 pb-10 pr-16 focus:outline-none resize-none text-sm text-foil-elements-textPrimary placeholder-foil-elements-textTertiary bg-transparent`}
                     onKeyDown={(event) => {
                       if (event.key === 'Enter') {
                         if (event.shiftKey) {
@@ -192,7 +269,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
 
                         event.preventDefault();
 
-                        sendMessage?.(event);
+                        handleSend(event);
                       }
                     }}
                     value={input}
@@ -209,7 +286,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                   <ClientOnly>
                     {() => (
                       <SendButton
-                        show={input.length > 0 || isStreaming}
+                        show={input.length > 0 || isStreaming || attachedFiles.length > 0}
                         isStreaming={isStreaming}
                         onClick={(event) => {
                           if (isStreaming) {
@@ -217,11 +294,26 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                             return;
                           }
 
-                          sendMessage?.(event);
+                          handleSend(event);
                         }}
                       />
                     )}
                   </ClientOnly>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    multiple
+                    className="hidden"
+                    accept=".txt,.md,.markdown,.csv,.json,.xml,.yaml,.yml,.toml,.ini,.env,.js,.jsx,.ts,.tsx,.py,.rb,.go,.rs,.java,.c,.cpp,.h,.cs,.php,.swift,.kt,.scala,.sh,.bash,.zsh,.html,.htm,.css,.scss,.sass,.less,.png,.jpg,.jpeg,.gif,.webp,.svg"
+                    onChange={handleFileSelect}
+                  />
+                  <button
+                    className="absolute bottom-[10px] left-[10px] flex items-center justify-center w-7 h-7 rounded-md text-foil-elements-item-contentDefault hover:text-foil-elements-item-contentActive hover:bg-foil-elements-item-backgroundActive transition-colors"
+                    title="Attach files"
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    <div className="i-ph:paperclip text-lg" />
+                  </button>
                 </div>
                 {!chatStarted && (
                   <div className="flex items-center justify-center gap-2 mt-3 flex-wrap">
