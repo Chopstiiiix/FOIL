@@ -12,7 +12,7 @@ const steps = [
   },
   {
     icon: 'i-ph:code',
-    title: 'FOIL generates your code',
+    title: 'LAB generates your code',
     description: 'The AI writes the code, installs dependencies, and sets up your project automatically.',
   },
   {
@@ -38,7 +38,7 @@ export function HowItWorksDialog() {
   return (
     <DialogRoot open={open}>
       <Dialog onClose={() => showHowItWorksDialog.set(false)} onBackdrop={() => showHowItWorksDialog.set(false)}>
-        <DialogTitle>How FOIL works</DialogTitle>
+        <DialogTitle>How LAB works</DialogTitle>
 
         <div className="flex flex-col gap-4 mt-4">
           {steps.map((step, i) => (
