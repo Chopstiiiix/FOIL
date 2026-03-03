@@ -244,12 +244,12 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                       {attachedFiles.map((file, index) => (
                         <div
                           key={index}
-                          className="flex items-center gap-1 bg-foil-elements-background-depth-3 text-foil-elements-textSecondary rounded-full px-2 py-0.5 text-xs max-w-[200px]"
+                          className="flex items-center gap-1 bg-transparent text-white/70 rounded-full px-2 py-0.5 text-xs max-w-[200px] border border-white/10"
                         >
                           <div className={file.mimeType.startsWith('image/') ? 'i-ph:image' : 'i-ph:file-text'} />
                           <span className="truncate">{file.name}</span>
                           <button
-                            className="flex-shrink-0 hover:text-foil-elements-textPrimary ml-0.5"
+                            className="flex-shrink-0 hover:text-white ml-0.5 transition-colors duration-300"
                             onClick={() => removeAttachedFile(index)}
                           >
                             <div className="i-ph:x text-xs" />
@@ -308,7 +308,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                     onChange={handleFileSelect}
                   />
                   <button
-                    className="absolute bottom-[10px] left-[10px] flex items-center justify-center w-7 h-7 rounded-md text-foil-elements-item-contentDefault hover:text-foil-elements-item-contentActive hover:bg-foil-elements-item-backgroundActive transition-colors"
+                    className="absolute bottom-[10px] left-[10px] flex items-center justify-center w-7 h-7 rounded-full bg-transparent border border-white/10 hover:border-white/20 text-white/60 hover:text-white transition-all duration-300"
                     title="Attach files"
                     onClick={() => fileInputRef.current?.click()}
                   >
