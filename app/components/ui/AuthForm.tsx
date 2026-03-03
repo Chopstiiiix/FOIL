@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, ArrowRight, User, Shield, AlertTriangle, KeyRound, Phone, Loader2, CheckCircle2 } from 'lucide-react';
 import { classNames } from '~/utils/classNames';
+import { currentUser } from '~/lib/stores/auth';
 
 type AuthMode = 'login' | 'signup' | 'reset';
 type RegistrationStep = 'details' | 'verification' | 'complete';
@@ -109,7 +110,7 @@ function PasswordStrengthIndicator({ password }: { password: string }) {
   );
 }
 
-export function AuthForm({ onClose, className, initialMode = 'login' }: AuthFormProps) {
+export function AuthForm({ onSuccess, onClose, className, initialMode = 'login' }: AuthFormProps) {
   const [authMode, setAuthMode] = useState<AuthMode>(initialMode);
   const [registrationStep, setRegistrationStep] = useState<RegistrationStep>('details');
   const [showPassword, setShowPassword] = useState(false);
@@ -308,7 +309,7 @@ export function AuthForm({ onClose, className, initialMode = 'login' }: AuthForm
     return Object.keys(newErrors).length === 0;
   }, [authMode, registrationStep, formData, validateField]);
 
-  const handleSubmit = useCallback((e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -318,30 +319,70 @@ export function AuthForm({ onClose, className, initialMode = 'login' }: AuthForm
     setIsLoading(true);
     setErrors({});
 
-    if (authMode === 'login') {
-      setTimeout(() => {
-        setIsLoading(false);
-        setSuccessMessage('Signed in successfully!');
-      }, 1500);
-    } else if (authMode === 'signup') {
-      if (registrationStep === 'details') {
-        setTimeout(() => {
-          setIsLoading(false);
+    try {
+      if (authMode === 'login') {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: formData.email, password: formData.password }),
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          setErrors({ general: data.error || 'Login failed' });
+          return;
+        }
+
+        currentUser.set(data.user);
+        onSuccess?.({ email: formData.email });
+        onClose?.();
+      } else if (authMode === 'signup') {
+        if (registrationStep === 'details') {
+          const res = await fetch('/api/auth/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              password: formData.password,
+              phone: formData.phone || undefined,
+            }),
+          });
+          const data = await res.json();
+
+          if (!res.ok) {
+            setErrors({ general: data.error || 'Signup failed' });
+            return;
+          }
+
           setRegistrationStep('verification');
-        }, 1500);
-      } else if (registrationStep === 'verification') {
-        setTimeout(() => {
-          setIsLoading(false);
+        } else if (registrationStep === 'verification') {
+          const res = await fetch('/api/auth/verify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: formData.email, code: formData.verificationCode }),
+          });
+          const data = await res.json();
+
+          if (!res.ok) {
+            setErrors({ verificationCode: data.error || 'Verification failed' });
+            return;
+          }
+
+          currentUser.set(data.user);
           setRegistrationStep('complete');
-        }, 1500);
-      }
-    } else if (authMode === 'reset') {
-      setTimeout(() => {
-        setIsLoading(false);
+        }
+      } else if (authMode === 'reset') {
+        // Password reset still mocked until reset endpoint is implemented
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         setSuccessMessage('Password reset link sent! Check your email.');
-      }, 1500);
+      }
+    } catch (err) {
+      setErrors({ general: 'Network error. Please try again.' });
+    } finally {
+      setIsLoading(false);
     }
-  }, [authMode, registrationStep, validateForm]);
+  }, [authMode, registrationStep, validateForm, formData, onSuccess]);
 
   const switchMode = useCallback((mode: AuthMode) => {
     setAuthMode(mode);
@@ -882,7 +923,7 @@ export function AuthForm({ onClose, className, initialMode = 'login' }: AuthForm
                     whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={isLoading}
-                    className="w-full relative group/button mt-4 cursor-pointer"
+                    className="w-full relative group/button mt-4 cursor-pointer bg-transparent border-none p-0"
                   >
                     <div className="absolute inset-0 bg-white/20 rounded-lg blur-lg opacity-0 group-hover/button:opacity-50 transition-opacity duration-300" />
                     <div className="relative overflow-hidden bg-white text-gray-900 font-medium h-10 rounded-lg hover:bg-gray-100 transition-all duration-300 flex items-center justify-center">
@@ -935,7 +976,7 @@ export function AuthForm({ onClose, className, initialMode = 'login' }: AuthForm
 
                   <p className="text-center text-[10px] text-white/40">
                     Didn&apos;t receive a code?{' '}
-                    <button type="button" className="text-white hover:text-white/80 transition-colors cursor-pointer">
+                    <button type="button" className="text-white hover:text-white/80 transition-colors cursor-pointer bg-transparent border-none p-0 text-[10px]">
                       Resend
                     </button>
                   </p>
@@ -945,18 +986,25 @@ export function AuthForm({ onClose, className, initialMode = 'login' }: AuthForm
                     whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={isLoading}
-                    className="w-full relative group/button cursor-pointer"
+                    className="w-full relative group/button mt-4 cursor-pointer bg-transparent border-none p-0"
                   >
                     <div className="absolute inset-0 bg-white/20 rounded-lg blur-lg opacity-0 group-hover/button:opacity-50 transition-opacity duration-300" />
                     <div className="relative overflow-hidden bg-white text-gray-900 font-medium h-10 rounded-lg hover:bg-gray-100 transition-all duration-300 flex items-center justify-center">
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/60 to-white/0 -z-10"
+                        animate={{ x: ['-100%', '100%'] }}
+                        transition={{ duration: 1.5, ease: 'easeInOut', repeat: Infinity, repeatDelay: 1 }}
+                        style={{ opacity: isLoading ? 1 : 0, transition: 'opacity 0.3s ease' }}
+                      />
                       <AnimatePresence mode="wait">
                         {isLoading ? (
                           <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center">
                             <Loader2 className="w-4 h-4 text-gray-900 animate-spin" />
                           </motion.div>
                         ) : (
-                          <motion.span key="text" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-sm font-semibold text-gray-900">
+                          <motion.span key="text" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center justify-center gap-1 text-sm font-semibold text-gray-900">
                             Verify Email
+                            <ArrowRight className="w-3 h-3 group-hover/button:translate-x-1 transition-transform duration-300" />
                           </motion.span>
                         )}
                       </AnimatePresence>
@@ -966,8 +1014,9 @@ export function AuthForm({ onClose, className, initialMode = 'login' }: AuthForm
                   <button
                     type="button"
                     onClick={() => setRegistrationStep('details')}
-                    className="w-full text-xs text-white/40 hover:text-white/60 transition-colors cursor-pointer"
+                    className="w-full text-xs text-white/40 hover:text-white/60 transition-colors cursor-pointer bg-transparent border-none p-0 flex items-center justify-center gap-1"
                   >
+                    <ArrowRight className="w-3 h-3 rotate-180" />
                     Back to details
                   </button>
                 </motion.form>

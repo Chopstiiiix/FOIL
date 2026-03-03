@@ -6,9 +6,13 @@ import { HeaderActionButtons } from './HeaderActionButtons.client';
 import { ChatDescription } from '~/lib/persistence/ChatDescription.client';
 import { GetStartedButton } from '~/components/ui/GetStartedButton';
 import { LoginDialog } from '~/components/auth/LoginDialog.client';
+import { isAuthenticated, currentUser } from '~/lib/stores/auth';
+import { UserAvatarMenu } from './UserAvatarMenu';
 
 export function Header() {
   const chat = useStore(chatStore);
+  const loggedIn = useStore(isAuthenticated);
+  const user = useStore(currentUser);
 
   return (
     <header
@@ -37,6 +41,8 @@ export function Header() {
             </div>
           )}
         </ClientOnly>
+      ) : loggedIn && user ? (
+        <UserAvatarMenu user={user} />
       ) : (
         <GetStartedButton />
       )}

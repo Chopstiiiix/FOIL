@@ -1,9 +1,10 @@
-import { drizzle } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
+import { Pool } from 'pg';
+import { drizzle } from 'drizzle-orm/node-postgres';
 import * as schema from './schema';
 
-let connection: postgres.Sql | null = null;
+let pool: Pool | null = null;
 let db: ReturnType<typeof drizzle> | null = null;
+let cachedUrl: string | null = null;
 
 export function getDb(env: { DATABASE_URL?: string }) {
   if (!env.DATABASE_URL) {
@@ -11,16 +12,16 @@ export function getDb(env: { DATABASE_URL?: string }) {
     return null;
   }
 
-  if (!connection) {
-    connection = postgres(env.DATABASE_URL, {
+  if (!db || cachedUrl !== env.DATABASE_URL) {
+    pool = new Pool({
+      connectionString: env.DATABASE_URL,
       max: 10,
-      idle_timeout: 20,
-      connect_timeout: 10,
+      idleTimeoutMillis: 20000,
+      connectionTimeoutMillis: 10000,
+      ssl: { rejectUnauthorized: false },
     });
-  }
-
-  if (!db) {
-    db = drizzle(connection, { schema });
+    db = drizzle(pool, { schema });
+    cachedUrl = env.DATABASE_URL;
   }
 
   return db;
@@ -28,7 +29,7 @@ export function getDb(env: { DATABASE_URL?: string }) {
 
 // Session tracking
 export async function createSession(
-  db: ReturnType<typeof drizzle>,
+  db: NonNullable<ReturnType<typeof getDb>>,
   data: {
     userId: string;
     projectId?: string;
@@ -58,7 +59,7 @@ export async function createSession(
 
 // Log user action
 export async function logUserAction(
-  db: ReturnType<typeof drizzle>,
+  db: NonNullable<ReturnType<typeof getDb>>,
   data: {
     userId: string;
     action: string;
@@ -86,7 +87,7 @@ export async function logUserAction(
 
 // Log error
 export async function logError(
-  db: ReturnType<typeof drizzle>,
+  db: NonNullable<ReturnType<typeof getDb>>,
   data: {
     userId?: string;
     projectId?: string;
@@ -116,7 +117,7 @@ export async function logError(
 
 // Track API usage
 export async function trackApiUsage(
-  db: ReturnType<typeof drizzle>,
+  db: NonNullable<ReturnType<typeof getDb>>,
   data: {
     userId: string;
     projectId?: string;
@@ -148,7 +149,7 @@ export async function trackApiUsage(
 
 // Get or create user
 export async function getOrCreateUser(
-  db: ReturnType<typeof drizzle>,
+  db: NonNullable<ReturnType<typeof getDb>>,
   data: {
     email: string;
     name?: string;
@@ -194,7 +195,7 @@ export async function getOrCreateUser(
 
 // Save project
 export async function saveProject(
-  db: ReturnType<typeof drizzle>,
+  db: NonNullable<ReturnType<typeof getDb>>,
   data: {
     userId: string;
     name: string;
@@ -227,7 +228,7 @@ export async function saveProject(
 
 // Update project
 export async function updateProject(
-  db: ReturnType<typeof drizzle>,
+  db: NonNullable<ReturnType<typeof getDb>>,
   projectId: string,
   data: {
     name?: string;
