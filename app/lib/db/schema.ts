@@ -13,6 +13,7 @@ export const users = pgTable('users', {
   verificationExpiry: timestamp('verification_expiry'),
   githubId: text('github_id'),
   githubUsername: text('github_username'),
+  googleId: text('google_id'),
   role: text('role', { enum: ['user', 'admin', 'superadmin'] }).default('user'),
   tier: text('tier', { enum: ['free', 'pro', 'enterprise'] }).default('free'),
   createdAt: timestamp('created_at').defaultNow(),

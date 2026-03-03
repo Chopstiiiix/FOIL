@@ -824,6 +824,11 @@ export function AuthForm({ onSuccess, onClose, className, initialMode = 'login' 
                     whileTap={{ scale: 0.98 }}
                     type="button"
                     className="w-full relative group/google cursor-pointer bg-transparent border-none p-0"
+                    onClick={() => {
+                      // Navigate top-level window to handle Google OAuth (works inside iframe too)
+                      const target = window.top ?? window;
+                      target.location.href = '/api/auth/google';
+                    }}
                   >
                     <div className="relative overflow-hidden bg-white font-medium h-10 rounded-lg hover:bg-gray-100 transition-all duration-300 flex items-center justify-center gap-2">
                       <svg className="w-4 h-4" viewBox="0 0 24 24">
