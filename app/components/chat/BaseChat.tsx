@@ -12,6 +12,7 @@ import { showImportDialog } from '~/lib/stores/github-import';
 import { GitHubDeployDialog } from '~/components/github/GitHubDeployDialog.client';
 import { VercelDeployDialog } from '~/components/vercel/VercelDeployDialog.client';
 import { GitHubImportDialog } from '~/components/github/GitHubImportDialog.client';
+import { HowItWorksDialog, showHowItWorksDialog } from '~/components/chat/HowItWorksDialog.client';
 import { Messages } from './Messages.client';
 import { SendButton } from './SendButton.client';
 
@@ -240,6 +241,10 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                       <div className="i-ph:terminal" />
                       Terminal
                     </Button>
+                    <Button variant="outline" size="sm" shape="circle" onClick={() => showHowItWorksDialog.set(true)}>
+                      <div className="i-ph:question" />
+                      How it works
+                    </Button>
                   </div>
                 )}
                 <ClientOnly>
@@ -248,6 +253,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
                       <GitHubDeployDialog />
                       <VercelDeployDialog />
                       <GitHubImportDialog />
+                      <HowItWorksDialog />
                     </>
                   )}
                 </ClientOnly>
