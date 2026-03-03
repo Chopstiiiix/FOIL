@@ -147,6 +147,10 @@ export class ActionRunner {
     const exitCode = await process.exit;
 
     logger.debug(`Process terminated with code ${exitCode}`);
+
+    if (exitCode !== 0) {
+      throw new Error(`Process exited with code ${exitCode}`);
+    }
   }
 
   async #runFileAction(action: ActionState) {

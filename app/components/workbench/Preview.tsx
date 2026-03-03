@@ -28,7 +28,7 @@ export const Preview = memo(() => {
 
     setUrl(baseUrl);
     setIframeUrl(baseUrl);
-  }, [activePreview, iframeUrl]);
+  }, [activePreview]);
 
   const validateUrl = useCallback(
     (value: string) => {
