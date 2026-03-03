@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
-import { Mail, Lock, Eye, EyeOff, ArrowRight, X } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { classNames } from '~/utils/classNames';
 
 interface AuthFormProps {
@@ -17,6 +17,16 @@ export function AuthForm({ onClose, className }: AuthFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
   const [rememberMe, setRememberMe] = useState(false);
+
+  const [isReturningUser, setIsReturningUser] = useState(false);
+
+  useEffect(() => {
+    const hasVisited = localStorage.getItem('foil_has_visited');
+    if (hasVisited) {
+      setIsReturningUser(true);
+    }
+    localStorage.setItem('foil_has_visited', 'true');
+  }, []);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -142,38 +152,15 @@ export function AuthForm({ onClose, className }: AuthFormProps) {
               }}
             />
 
-            {/* Close button */}
-            {onClose && (
-              <button
-                type="button"
-                onClick={onClose}
-                className="absolute top-4 right-4 z-10 text-white/30 hover:text-white/70 transition-colors cursor-pointer"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            )}
-
             {/* Logo and header */}
             <div className="text-center space-y-1 mb-5">
-              <motion.div
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: 'spring', duration: 0.8 }}
-                className="mx-auto w-10 h-10 rounded-full border border-white/10 flex items-center justify-center relative overflow-hidden"
-              >
-                <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">
-                  S
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50" />
-              </motion.div>
-
               <motion.h1
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
                 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80"
               >
-                Welcome Back
+                {isReturningUser ? 'Welcome Back' : 'Welcome'}
               </motion.h1>
 
               <motion.p
@@ -182,7 +169,7 @@ export function AuthForm({ onClose, className }: AuthFormProps) {
                 transition={{ delay: 0.3 }}
                 className="text-white/60 text-xs"
               >
-                Sign in to continue to StyleMe
+                Sign in to continue to LAB
               </motion.p>
             </div>
 
@@ -339,8 +326,8 @@ export function AuthForm({ onClose, className }: AuthFormProps) {
                 disabled={isLoading}
                 className="w-full relative group/button mt-5 cursor-pointer"
               >
-                <div className="absolute inset-0 bg-white/10 rounded-lg blur-lg opacity-0 group-hover/button:opacity-70 transition-opacity duration-300" />
-                <div className="relative overflow-hidden bg-white text-black font-medium h-10 rounded-lg transition-all duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-white/10 rounded-full blur-lg opacity-0 group-hover/button:opacity-70 transition-opacity duration-300" />
+                <div className="relative overflow-hidden bg-white text-black font-medium h-10 rounded-full transition-all duration-300 flex items-center justify-center">
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 -z-10"
                     animate={{ x: ['-100%', '100%'] }}
@@ -395,8 +382,8 @@ export function AuthForm({ onClose, className }: AuthFormProps) {
                 type="button"
                 className="w-full relative group/google cursor-pointer"
               >
-                <div className="absolute inset-0 bg-white/5 rounded-lg blur opacity-0 group-hover/google:opacity-70 transition-opacity duration-300" />
-                <div className="relative overflow-hidden bg-white/5 text-white font-medium h-10 rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center justify-center gap-2">
+                <div className="absolute inset-0 bg-white/5 rounded-full blur opacity-0 group-hover/google:opacity-70 transition-opacity duration-300" />
+                <div className="relative overflow-hidden bg-white/5 text-white font-medium h-10 rounded-full border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center justify-center gap-2">
                   <div className="w-4 h-4 flex items-center justify-center text-white/80 group-hover/google:text-white transition-colors duration-300">
                     G
                   </div>
